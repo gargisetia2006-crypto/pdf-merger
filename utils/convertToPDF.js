@@ -16,7 +16,7 @@ async function convertToPDF(file) {
   fs.writeFileSync(inputPath, file.buffer);
 
   // 2. Run LibreOffice (FULL PATH FIX)
-  const command = `/Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf "${inputPath}" --outdir "${tempDir}"`;
+  const command = `soffice --headless --convert-to pdf "${inputPath}" --outdir "${tempDir}"`;
 
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
