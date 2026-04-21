@@ -5,25 +5,23 @@ const { exec } = require('child_process');
 async function convertToPDF(file) {
   const tempDir = path.join(__dirname, '../temp');
 
-  // ✅ Ensure temp directory exists
+  // Ensure temp directory exists
   if (!fs.existsSync(tempDir)) {
     fs.mkdirSync(tempDir, { recursive: true });
   }
 
-  // ✅ Safe filename handling
+  // Safe filename
   const originalName = file.originalname || `file-${Date.now()}.docx`;
   const safeName = originalName.replace(/\s+/g, '_');
 
-  const inputPath = path.join(tempDir, `${Date.now()}-${safeName}`);
-  const outputPath = inputPath.replace(/\.(docx|doc|xlsx|xls)$/i, '.pdf');
+  const timestamp = Date.now();
+  const inputPath = path.join(tempDir, `${timestamp}-${safeName}`);
 
   console.log("Input Path:", inputPath);
-  console.log("Output Path:", outputPath);
 
-  // 1. Save file
+  // Save file
   fs.writeFileSync(inputPath, file.buffer);
 
-  // 2. Run LibreOffice
   const command = `soffice --headless --nologo --nolockcheck --nodefault --nofirststartwizard --convert-to pdf "${inputPath}" --outdir "${tempDir}"`;
 
   return new Promise((resolve, reject) => {
@@ -36,12 +34,22 @@ async function convertToPDF(file) {
         return reject(error);
       }
 
-      // ✅ Wait until file is actually created
+      // 🔥 REAL FIX: find actual generated PDF
       let attempts = 0;
       const maxAttempts = 10;
 
       const checkFile = () => {
-        if (fs.existsSync(outputPath)) {
+        const files = fs.readdirSync(tempDir);
+
+        // Match PDF related to this file
+        const pdfFile = files.find(f =>
+          f.endsWith('.pdf') &&
+          f.includes(safeName.split('.')[0])
+        );
+
+        if (pdfFile) {
+          const outputPath = path.join(tempDir, pdfFile);
+
           try {
             const pdfBuffer = fs.readFileSync(outputPath);
 
@@ -53,13 +61,14 @@ async function convertToPDF(file) {
           } catch (err) {
             return reject(err);
           }
-        } else {
-          attempts++;
-          if (attempts > maxAttempts) {
-            return reject(new Error("PDF not generated"));
-          }
-          setTimeout(checkFile, 500);
         }
+
+        attempts++;
+        if (attempts > maxAttempts) {
+          return reject(new Error("PDF not generated"));
+        }
+
+        setTimeout(checkFile, 500);
       };
 
       checkFile();
