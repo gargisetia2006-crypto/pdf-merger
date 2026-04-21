@@ -1,41 +1,40 @@
 const imageToPDF = require('./imageToPdf');
-const wordToPDF = require('./wordToPdf');
-const excelToPDF = require('./excelToPdf');
+const convertToPDF = require('./cloudConvert');
 
 async function normalizeToPDF(file) {
-
   if (!file || !file.mimetype || !file.buffer) {
     throw new Error('Invalid file object');
   }
 
-const { mimetype, buffer, path } = file;
+  const { mimetype } = file;
 
-// IMAGE
-if (mimetype.startsWith('image/')) {
-  return await imageToPDF(buffer);
-}
+  // IMAGE → local conversion
+  if (mimetype.startsWith('image/')) {
+    return await imageToPDF(file.buffer);
+  }
 
-  // PDF
+  // PDF → already correct
   if (mimetype === 'application/pdf') {
-    return buffer;
+    return file.buffer;
   }
 
-  // WORD
+  // WORD + EXCEL → CloudConvert
   if (
-    mimetype ===
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-    mimetype === 'application/msword'
-  ) {
-    return await wordToPDF(buffer);
-  }
-
-  // EXCEL
-  if (
-    mimetype ===
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+    mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+    mimetype === 'application/msword' ||
+    mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
     mimetype === 'application/vnd.ms-excel'
   ) {
-    return await excelToPDF(buffer);   // ✅ USE BUFFER
+    return await convertToPDF(file);   // ✅ pass full file (IMPORTANT)
+  }
+
+  // fallback (optional safety)
+  if (
+    mimetype.includes('word') ||
+    mimetype.includes('excel') ||
+    mimetype.includes('spreadsheet')
+  ) {
+    return await convertToPDF(file);
   }
 
   throw new Error(`Unsupported file type: ${mimetype}`);
