@@ -1,4 +1,5 @@
-node_modules
-uploads
+node_modules/
+uploads/
+output/
 .env
 .DS_Store
