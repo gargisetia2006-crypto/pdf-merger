@@ -1,0 +1,227 @@
+/* ===== Global reset & font ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ===== Page background ===== */
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      rgba(10, 45, 70, 0.78),
+      rgba(10, 45, 70, 0.78)
+    ),
+    url("upes-bg.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #1f2933;
+}
+
+/* ===== Page wrapper ===== */
+.page {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+/* ===== Header ===== */
+header {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 35px;
+}
+
+header h1 {
+  font-size: 34px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+header p {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* ===== Main card ===== */
+.card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 14px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+}
+
+/* ===============================
+   FILE DETAILS SECTION
+================================ */
+
+.file-details {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #0b3c5d;
+  padding: 22px 24px;
+  margin-bottom: 28px;
+  border-radius: 8px;
+}
+
+.file-details h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: #0b3c5d;
+}
+
+.file-note {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 18px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #0b3c5d;
+}
+
+.input-group input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #0b3c5d;
+  box-shadow: 0 0 0 2px rgba(11, 60, 93, 0.15);
+}
+
+/* ===== Info box ===== */
+.form-info {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #2563eb;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  border-radius: 6px;
+}
+
+.form-info ul {
+  padding-left: 18px;
+}
+
+.form-info li {
+  font-size: 14px;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+/* ===== Option block ===== */
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #e1e7ef;
+  background-color: #f9fbfd;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.option:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ===== Drag cursor ===== */
+.option.draggable {
+  cursor: grab;
+}
+
+.option.draggable:active {
+  cursor: grabbing;
+}
+
+/* ===== Label styling ===== */
+.option label {
+  font-weight: 600;
+  color: #0b3c5d;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+/* ===== Common input styling ===== */
+.option input[type="file"],
+.option input[type="text"],
+.option input[type="url"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.option input[type="file"] {
+  padding: 8px;
+}
+
+/* ===== Input focus effect ===== */
+.option input[type="text"]:focus,
+.option input[type="url"]:focus {
+  outline: none;
+  border-color: #0b3c5d;
+  box-shadow: 0 0 0 2px rgba(11, 60, 93, 0.15);
+}
+
+/* ===== Submit button ===== */
+button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #0b3c5d;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #08304a;
+  transform: translateY(-1px);
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 13px;
+  color: #e5e7eb;
+}
+
+/* ===== Responsive Fix ===== */
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}

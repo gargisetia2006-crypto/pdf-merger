@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document Merger | UPES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <h1>Document Merger</h1>
+      <p>Upload and merge academic documents securely</p>
+    </header>
+
+    <form
+      class="card"
+      id="optionsContainer"
+      action="/upload"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+
+      <!-- =========================
+           FILE DETAILS SECTION
+      ========================== -->
+
+      <div class="file-details">
+        <h3>Enter File Details</h3>
+        <p class="file-note">
+          Final PDF will be named:
+          <strong>SubjectName_SubjectCode_Semester_FacultyName.pdf</strong>
+        </p>
+
+        <div class="details-grid">
+          <input type="text" name="subjectName" placeholder="Subject Name" required>
+          <input type="text" name="subjectCode" placeholder="Subject Code" required>
+          <input type="text" name="semester" placeholder="Semester (e.g., 4)" required>
+          <input type="text" name="facultyName" placeholder="Faculty Name" required>
+        </div>
+      </div>
+
+      <!-- =========================
+           INFORMATION SECTION
+      ========================== -->
+
+      <div class="form-info">
+        <ul>
+          <li>Upload documents in <strong>PDF, Image, Word, Excel format</strong></li>
+          <li>Multiple files can be uploaded for any checklist item</li>
+          <li>Drag and drop checklist items to change merge order</li>
+          <li>Images, Word, Excel will be automatically converted to PDF</li>
+        </ul>
+      </div>
+
+      <!-- =========================
+           CHECKLIST OPTIONS
+      ========================== -->
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Course Plan</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Course Plan" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Overview of Course Delivery</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Overview of Course Delivery" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Lab Manual</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Lab Manual" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Periodic Monitoring Sheet</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Periodic Monitoring Sheet" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Class Tests / Quiz / Assignments</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Class Tests / Quiz / Assignments" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Assignments with Model Answers</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Assignments with Model Answers" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Quiz Papers with Model Answers</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Quiz Papers with Model Answers" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Test Papers with Answer Sheets</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Test Papers with Answer Sheets" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Mid-Sem Exam Marks</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Mid-Sem Exam Marks" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Plan for Remedial Classes</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Plan for Remedial Classes" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Mid-Sem QP & Answer Key</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Mid-Sem QP & Answer Key" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> End-Sem Exam Marks</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="End-Sem Exam Marks" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> End-Sem QP & Answer Key</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="End-Sem QP & Answer Key" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Minor / Major Project List</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Minor / Major Project List" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Internal Assessment Sheet</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Internal Assessment Sheet" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Final Grade Sheet</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Final Grade Sheet" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Lab Quiz / Test Conducted</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Lab Quiz / Test Conducted" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Lab Rubrics</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Lab Rubrics" disabled>
+      </div>
+
+      <!-- Course Attainment (Link Only) -->
+      <div class="option draggable">
+        <label><input type="checkbox"> Course Attainment Sheet</label>
+        <input type="url" name="courseAttainmentLink" placeholder="Paste Excel Hyperlink Here" disabled>
+        <input type="hidden" name="labels[]" value="Course Attainment Sheet" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Indirect Attainment Sheet</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Indirect Attainment Sheet" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Copy of Time Table</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Copy of Time Table" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Attendance Sheet</label>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Attendance Sheet" disabled>
+      </div>
+
+      <div class="option draggable">
+        <label><input type="checkbox"> Other (Custom Document)</label>
+        <input type="text" name="customDocumentName" placeholder="Enter document name" disabled>
+        <input type="file" name="files" multiple disabled>
+        <input type="hidden" name="labels[]" value="Other (Custom Document)" disabled>
+      </div>
+
+      <button type="submit">Merge Documents</button>
+
+    </form>
+
+    <footer>
+      <p>Powered for University of Petroleum and Energy Studies</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
